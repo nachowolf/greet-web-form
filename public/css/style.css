@@ -1,0 +1,107 @@
+.cont{
+    margin-top:30px;
+    margin-bottom:30px;
+    margin-left:80px;
+    width:620px;
+    display:inline-block;
+    border:solid;
+    border-radius:10px;
+    background-color:#2384b5;
+    box-shadow:10px 10px black;
+     
+  }
+  
+  .greetHead{
+    text-align:center;
+    text-shadow: 2px 2px green;
+    text-decoration:underline;
+  }
+  
+  
+  .block{
+    text-align:center;
+    padding-top:50px;
+  }
+  
+  input[type=text]{
+    margin-left:20px;
+    width:350px;
+    height:50px;
+    font-size:30px;
+    padding-left:30px;
+    background-color:#7ef6ff;
+    text-shadow:2px 2px green;
+    text-transform:uppercase;
+    
+  }
+  
+  label{
+    display:inline-block;
+    color:black;
+  }
+  
+  label h4{
+    text-shadow:2px 2px green;
+  }
+  
+  .block button{
+    transition:0.6s;
+    background-color:yellow;
+    color:black;
+  }
+  
+  .block button:hover{
+    transition:0.5s;
+    box-shadow:5px 5px ;
+    text-shadow: 2px 2px green;
+  }
+  
+  
+  th,td {
+    text-align:center;
+    width:100%;
+    
+  }
+  
+  th{
+    text-decoration:underline;
+  }
+  
+  .returned{
+    display:inline-block;
+    width:580px;
+    height:70px;
+    float:left;
+    margin-left:100px;
+    border:solid; 
+    border-radius:10px;
+    background-color:#2384b5;
+    box-shadow:10px 10px black;
+    }
+  
+  .response {
+    text-align:center;
+    padding:10px;
+    color:black
+  
+  }
+  
+  .greeted{
+    display:inline-block;
+     width:580px;
+    height:70px;
+    float:left;
+    margin-left:100px;
+    margin-top:30px;
+    border:solid; 
+    border-radius:10px;
+    background-color:#2384b5;
+    box-shadow:10px 10px black;
+  }
+  
+  .counter{
+    text-align:center;
+    margin:10px;
+    color:black;
+    text-shadow:2px 2px green;
+  }
