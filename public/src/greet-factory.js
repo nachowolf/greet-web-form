@@ -7,10 +7,15 @@ module.exports = function() {
   
     var greetMe = function(name, language) {
       var one = name.trim().toUpperCase();
+      
+      
   
       for (var i=0; i<name.length;i++){
+       
          if (isNaN(name[i]) === false){
+            
           greet = "Your name cannot contain any numbers";
+          
           return;
         }
       }
@@ -22,7 +27,8 @@ module.exports = function() {
   
   else if (one !== "" && language === undefined){
     greet = "Select a Language";
-    return;
+    // console.log(greet)
+    // return;
   }
   
       if (isNaN(one) === true && language !== undefined) {
@@ -41,10 +47,12 @@ module.exports = function() {
         else if (language == "Italian") {
           greet = "Ciao, " + name;
         }
+        
       }
+    
     };
   
-  
+
     var respond = function() {
       return greet;
     };

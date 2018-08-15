@@ -70,7 +70,7 @@
   .returned{
     display:inline-block;
     width:580px;
-    height:70px;
+    height:100px;
     float:left;
     margin-left:100px;
     border:solid; 
@@ -104,4 +104,15 @@
     margin:10px;
     color:black;
     text-shadow:2px 2px green;
+  }
+
+  .radioBlocks{
+    margin-left:10px;
+    display:inline-block;
+    width:30%;
+  
+  }
+  
+  label{
+    font-size:30px;
   }

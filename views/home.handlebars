@@ -2,17 +2,36 @@
   <div class="container">
   <h1 class="greetHead">Greet Web Form</h1>
    <div class="greeted">
-     <div class="counter"><h3>Names Greeted :</h3></div>
+     <div class="counter"><h3>Names Greeted : {{amount}}</h3></div>
   </div>
   
   <div class="cont">
     
     <div class="eleven columns">
-      <form action="">
+      <form action="/greetings/submit" method="POST">
         
         <div class="block">
        <label for="names"><h4>Name:</h4></label>
-       <input id="names" type="text">
+       <input id="names" type="text" name="user"> 
+
+       <div class="radioBlocks">
+        <label>
+        <input  type="radio" name="languageButton" value="English">
+          English
+          </label>
+      </div>
+      
+      <div class="radioBlocks">        
+        <label><input  type="radio" name="languageButton" value="Japanese">
+         Japanese
+          </label>
+      </div>
+      <div class="radioBlocks">
+        <label>
+        <input type="radio" name="languageButton" value="Italian">
+          Italian
+          </label>
+      </div>
         </div>
         <div class="block">
      <button type="submit">GREET</button> 
@@ -23,7 +42,7 @@
   </div>
   
   <div class="returned">
-    <div class="response"><h3>Hello</h3></div>
+    <div class="response"><h3>{{greeted}}</h3></div>
     
   </div>
   </div>

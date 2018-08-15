@@ -8,6 +8,9 @@ const app = express();
 const factory = greetFactory();
 
 
+
+
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: false
@@ -23,6 +26,35 @@ app.use(express.static('public'))
 app.get('/', function (req, res){
     res.render('home')
 })
+
+app.get('/greetings/:user', function (req, res){
+    let user = req.params.user
+   
+    
+     res.render('home',{
+
+        greeted: factory.respond(),
+        amount: factory.counter()
+     })
+})
+
+app.post('/greetings/submit', function (req, res) {
+    let user = req.body.user
+    let lang = req.body.languageButton
+    factory.greetMe(user,lang)
+    
+    if(user == ""){
+        res.render('home',{
+            amount: factory.counter()
+        })    
+    }
+   
+  else{
+    res.redirect('/greetings/' + user) 
+  }
+    
+})
+
 
 let PORT = process.env.PORT || 3008
 
