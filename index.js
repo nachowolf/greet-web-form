@@ -29,8 +29,8 @@ app.get('/', function (req, res){
 
 app.get('/greetings/:user', function (req, res){
     let user = req.params.user
-   
-    
+    factory.usersGreeted(user)
+    console.log(factory.greetsBank())
      res.render('home',{
 
         greeted: factory.respond(),
