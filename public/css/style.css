@@ -116,3 +116,27 @@
   label{
     font-size:30px;
   }
+
+  .counter a{
+    color:blue;
+    transition: 0.05s;
+    text-decoration-color: yellow;
+  }
+  
+  .counter a:hover{
+    transition:0.5s;
+   text-shadow:4px 4px green; 
+  }
+
+  .counted{
+    display:inline-block;
+     width:580px;
+    height:100px;
+    float:left;
+    margin-left:100px;
+    margin-top:30px;
+    border:solid; 
+    border-radius:10px;
+    background-color:#2384b5;
+    box-shadow:10px 10px black;
+  }

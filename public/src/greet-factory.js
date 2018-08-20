@@ -3,11 +3,13 @@ module.exports = function() {
 
     var storedNamesList = {};
     var greet; // <----
+    var named
+    var allNamesList = []
   
   
     var greetMe = function(name, language) {
       var one = name.trim().toUpperCase();
-      
+     
       
   
       for (var i=0; i<name.length;i++){
@@ -27,11 +29,12 @@ module.exports = function() {
   
   else if (one !== "" && language === undefined){
     greet = "Select a Language";
-    // console.log(greet)
-    // return;
+    return;
   }
   
       if (isNaN(one) === true && language !== undefined) {
+        named = name
+        allNamesList.push(name)
         if (storedNamesList[one] === undefined) {
           storedNamesList[one] = 0;
         }
@@ -52,6 +55,19 @@ module.exports = function() {
     
     };
   
+var allNamesCounted = function(input){
+  var countedList = 0
+  for(var i = 0;i<allNamesList.length;i++){
+    if(allNamesList[i] === input){
+      countedList += 1
+    }
+  }
+  return countedList
+}
+
+var currentName = function(){
+  return named
+}
 
     var respond = function() {
       return greet;
@@ -65,6 +81,8 @@ module.exports = function() {
       return Object.keys(storedNamesList).length;
     };
     return {
+      allNamesCounted,
+      currentName,
       greetMe: greetMe,
       counter: counter,
       respond: respond,

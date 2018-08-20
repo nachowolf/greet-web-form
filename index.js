@@ -56,6 +56,26 @@ app.post('/greetings/submit', function (req, res) {
 })
 
 
+
+app.get('/counter/:currentUser', function(req, res){
+    let currentUser = req.params.currentUser
+    
+    res.render('counter', {
+        currentUser,
+         greetedCounter: factory.allNamesCounted(currentUser)
+       
+    })
+    })
+
+app.post('/counter', function(req, res){
+    let name = factory.currentName()
+    console.log(name)
+    res.redirect('/counter/' + name)
+})
+
+
+
+
 let PORT = process.env.PORT || 3008
 
 app.listen(PORT, function () {

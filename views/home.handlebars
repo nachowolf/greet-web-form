@@ -2,7 +2,7 @@
   <div class="container">
   <h1 class="greetHead">Greet Web Form</h1>
    <div class="greeted">
-     <div class="counter"><h3>Names Greeted : {{amount}}</h3></div>
+  <div class="counter"><h3>Names Greeted : {{amount}}</h3></div>
   </div>
   
   <div class="cont">
@@ -36,7 +36,16 @@
         <div class="block">
      <button type="submit">GREET</button> 
         </div>
-      </form>     
+
+
+      </form> 
+      
+      <form action="/counter" method="POST">
+
+<div class="block">
+  <button>Status</button>
+</div>
+      </form>    
     </div>
     
   </div>
