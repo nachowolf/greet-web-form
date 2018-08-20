@@ -9,8 +9,6 @@ const factory = greetFactory();
 
 
 
-
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: false
