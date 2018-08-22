@@ -65,6 +65,14 @@ var allNamesCounted = function(input){
   return countedList
 }
 
+var reset = function(){
+   storedNamesList = {}
+     greet = undefined
+     named = undefined
+     allNamesList = []
+    return
+}
+
 var currentName = function(){
   return named
 }
@@ -81,6 +89,7 @@ var currentName = function(){
       return Object.keys(storedNamesList).length;
     };
     return {
+      reset,
       allNamesCounted,
       currentName,
       greetMe: greetMe,

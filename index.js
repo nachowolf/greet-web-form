@@ -53,7 +53,10 @@ app.post('/greetings/submit', function (req, res) {
     
 })
 
-
+app.get('/reset', function(req, res){
+    factory.reset()
+    res.redirect('/')
+})
 
 app.get('/counter/:currentUser', function(req, res){
     let currentUser = req.params.currentUser
