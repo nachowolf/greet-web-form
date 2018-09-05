@@ -163,3 +163,39 @@
     box-shadow:5px 5px ;
     text-shadow: 2px 2px green;
   }
+
+  .greetlist{
+    padding:20px;
+    width: 70%;
+  }
+
+  .greetedList{
+    text-align: center;
+    border-bottom: solid;
+  }
+a :nth-child(1){
+  color: red;
+text-decoration: underline;
+  text-decoration-color: white;
+}
+  
+a :nth-child(1):hover{
+  text-decoration-color: red;
+}
+
+a{
+  color: blue;
+  text-decoration: underline;
+  text-decoration-color: white;
+}
+  
+a :hover{
+  text-decoration-color: blue;
+}
+
+table,th, td {
+  
+  padding: 4px;
+  column-span: 2px;
+  text-align: center;
+}

@@ -1,4 +1,4 @@
-module.exports = function (factory) {
+module.exports = function (factory, pool) {
     function index (req, res) {
         res.render('home');
     }
@@ -10,10 +10,14 @@ module.exports = function (factory) {
             amount: factory.counter()
         });
     }
-    function submit (req, res) {
+    async function submit (req, res) {
         let user = req.body.user;
         let lang = req.body.languageButton;
         factory.greetMe(user, lang);
+
+        if ( && user !== '') {
+            await pool.query('insert into users (name, greeted) values ($1, $2)', [user, 1]);
+        }
 
         if (user === '') {
             res.render('home', {
@@ -24,21 +28,30 @@ module.exports = function (factory) {
         }
     }
 
-    function counterCurrent (req, res) {
-        let currentUser = req.params.currentUser;
+    // async function counterCurrent (req, res) {
+    //     let currentUser = req.params.currentUser;
+    //     let results = await pool.query('select * from greet_list');
+    //     let name = results.rows;
 
-        res.render('counter', {
-            currentUser,
-            greetedCounter: factory.allNamesCounted(currentUser)
+    //     res.render('counter', {
+    //         name,
+    //         currentUser,
+    //         greetedCounter: factory.allNamesCounted(currentUser)
 
-        });
+    //     });
+    // }
+
+    async function counterlist (req, res) {
+        let list = await pool.query('select * from users');
+        let greetedNames = list.rows;
+        res.render('counter', {greetedNames});
     }
 
     function counter (req, res) {
-        let name = factory.currentName();
-        console.log(name);
-        res.redirect('/counter/' + name);
+   
+        res.redirect('/counter');
     }
+
     function reset (req, res) {
         factory.reset();
         res.redirect('/');
@@ -48,7 +61,8 @@ module.exports = function (factory) {
         index,
         greetAndCounter,
         submit,
-        counterCurrent,
+        // counterCurrent,
+        counterlist,
         counter,
         reset
 
