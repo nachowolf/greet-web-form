@@ -14,9 +14,15 @@ module.exports = function (factory, pool) {
         let user = req.body.user;
         let lang = req.body.languageButton;
         factory.greetMe(user, lang);
+        var listed = await pool.query('select name from users where name = $1', [user]);
 
-        if ( && user !== '') {
+        if (listed === '' && user !== '') {
             await pool.query('insert into users (name, greeted) values ($1, $2)', [user, 1]);
+        };
+        else if (listed !== '' && user !== '') {
+            var greetCount = await pool.query('select greeted from users where name = $1', [user]
+            ,greetCount += 1
+            await pool.query('update users set greeted = $1 where name = $2',[greetCount, user])
         }
 
         if (user === '') {
@@ -42,7 +48,7 @@ module.exports = function (factory, pool) {
     // }
 
     async function counterlist (req, res) {
-        let list = await pool.query('select * from users');
+        let list = await pool.query('select * from users order by greeted desc');
         let greetedNames = list.rows;
         res.render('counter', {greetedNames});
     }

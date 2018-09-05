@@ -1,7 +1,7 @@
 module.exports = function () {
     var storedNamesList = {};
     var greet; // <----
-    var named;
+    var listed;
     var allNamesList = [];
 
     var greetMe = function (name, language) {
@@ -24,19 +24,23 @@ module.exports = function () {
         }
 
         if (isNaN(one) === true && language !== undefined) {
-            named = name;
+           
             allNamesList.push(name);
             if (storedNamesList[one] === undefined) {
                 storedNamesList[one] = 0;
+                listed = true;
             }
 
-            if (language == 'English') {
+            if (language === 'English') {
                 greet = 'Hello, ' + name;
-            } else if (language == 'Japanese') {
+            } else if (language === 'Japanese') {
                 greet = "Kon'nichiwa, " + name;
-            } else if (language == 'Italian') {
+            } else if (language === 'Italian') {
                 greet = 'Ciao, ' + name;
             }
+        }
+        else {
+            listed = false;
         }
     };
 
@@ -53,12 +57,12 @@ module.exports = function () {
     var reset = function () {
         storedNamesList = {};
         greet = undefined;
-        named = undefined;
+        listed = false;
         allNamesList = [];
     };
 
-    var currentName = function () {
-        return named;
+    var nameChecker = function () {
+        return listed;
     };
 
     var respond = function () {
@@ -75,7 +79,7 @@ module.exports = function () {
     return {
         reset,
         allNamesCounted,
-        currentName,
+        nameChecker,
         greetMe: greetMe,
         counter: counter,
         respond: respond,
