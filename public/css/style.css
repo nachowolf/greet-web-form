@@ -173,23 +173,23 @@
     text-align: center;
     border-bottom: solid;
   }
-a :nth-child(1){
+table a :nth-child(1){
   color: red;
 text-decoration: underline;
   text-decoration-color: white;
 }
   
-a :nth-child(1):hover{
+table a :nth-child(1):hover{
   text-decoration-color: red;
 }
 
-a{
+table a{
   color: blue;
   text-decoration: underline;
   text-decoration-color: white;
 }
   
-a :hover{
+table a :hover{
   text-decoration-color: blue;
 }
 
@@ -198,4 +198,8 @@ table,th, td {
   padding: 4px;
   column-span: 2px;
   text-align: center;
+}
+
+.back a {
+  color: black;
 }

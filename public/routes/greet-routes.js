@@ -1,9 +1,12 @@
-module.exports = function (factory, pool) {
+module.exports = function (factory, pool, stored) {
     function index (req, res) {
         res.render('home');
     }
 
     function greetAndCounter (req, res) {
+        let user = req.params.user;
+        stored.add(user);
+
         res.render('home', {
 
             greeted: factory.respond(),
@@ -14,16 +17,6 @@ module.exports = function (factory, pool) {
         let user = req.body.user;
         let lang = req.body.languageButton;
         factory.greetMe(user, lang);
-        var listed = await pool.query('select name from users where name = $1', [user]);
-
-        if (listed === '' && user !== '') {
-            await pool.query('insert into users (name, greeted) values ($1, $2)', [user, 1]);
-        };
-        else if (listed !== '' && user !== '') {
-            var greetCount = await pool.query('select greeted from users where name = $1', [user]
-            ,greetCount += 1
-            await pool.query('update users set greeted = $1 where name = $2',[greetCount, user])
-        }
 
         if (user === '') {
             res.render('home', {
@@ -34,40 +27,49 @@ module.exports = function (factory, pool) {
         }
     }
 
-    // async function counterCurrent (req, res) {
-    //     let currentUser = req.params.currentUser;
-    //     let results = await pool.query('select * from greet_list');
-    //     let name = results.rows;
+    async function counterCurrent (req, res) {
+        let currentUser = req.params.currentUser;
 
-    //     res.render('counter', {
-    //         name,
-    //         currentUser,
-    //         greetedCounter: factory.allNamesCounted(currentUser)
+        let name = await pool.query('select name from users where name = 1$', [currentUser]);
+        let greets = await pool.query('select greeted from users where name = 1$', [currentUser]);
+        console.log(name);
 
-    //     });
-    // }
+        res.render('counted', {
+            name,
+            greets
+        });
+    }
 
     async function counterlist (req, res) {
-        let list = await pool.query('select * from users order by greeted desc');
+        let list = stored.list();
+        console.log(list);
         let greetedNames = list.rows;
         res.render('counter', {greetedNames});
     }
 
-    function counter (req, res) {
-   
+    async function counter (req, res) {
         res.redirect('/counter');
     }
 
-    function reset (req, res) {
+    async function reset (req, res) {
         factory.reset();
+        stored.reset();
         res.redirect('/');
     }
 
+    async function deleter (req, res) {
+        let users = req.params.currentUser;
+        stored.deleteFromDb(users);
+
+        res.redirect('/counter');
+    }
+
     return {
+        deleter,
         index,
         greetAndCounter,
         submit,
-        // counterCurrent,
+        counterCurrent,
         counterlist,
         counter,
         reset

@@ -1,7 +1,7 @@
 module.exports = function () {
     var storedNamesList = {};
     var greet; // <----
-    var listed;
+    var currentName;
     var allNamesList = [];
 
     var greetMe = function (name, language) {
@@ -28,7 +28,7 @@ module.exports = function () {
             allNamesList.push(name);
             if (storedNamesList[one] === undefined) {
                 storedNamesList[one] = 0;
-                listed = true;
+                currentName = name;
             }
 
             if (language === 'English') {
@@ -61,8 +61,8 @@ module.exports = function () {
         allNamesList = [];
     };
 
-    var nameChecker = function () {
-        return listed;
+    var name = function () {
+        return currentName;
     };
 
     var respond = function () {
@@ -79,7 +79,7 @@ module.exports = function () {
     return {
         reset,
         allNamesCounted,
-        nameChecker,
+        name,
         greetMe: greetMe,
         counter: counter,
         respond: respond,

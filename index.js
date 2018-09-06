@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const greetFactory = require('./public/src/greet-factory.js');
 const greetRoutes = require('./public/routes/greet-routes.js');
 const pg = require('pg');
+const dbFuncs = require('./public/src/db-factory.js');
 const Pool = pg.Pool;
 
 let useSSL = false;
@@ -18,10 +19,10 @@ const pool = new Pool({
     connectionString,
     ssl: useSSL
 });
-
+const stored = dbFuncs(pool);
 const app = express();
 const factory = greetFactory();
-const routes = greetRoutes(factory, pool);
+const routes = greetRoutes(factory, pool, stored);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -43,7 +44,9 @@ app.post('/greetings/submit', routes.submit);
 
 app.get('/reset', routes.reset);
 
-// app.get('/counter/:currentUser', routes.counterCurrent);
+app.get('/counted/:currentUser', routes.counterCurrent);
+
+app.get('/counter/delete/:currentUser', routes.deleter);
 
 app.get('/counter', routes.counterlist);
 

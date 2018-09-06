@@ -9,8 +9,8 @@
 
     {{#each greetedNames}}
         <tr>
-        <td><a href="{{name}}">{{name}}</a></td>
-        <td><a href="#"><h6>delete</h6></a></td>
+        <td><a href="/counted/{{name}}">{{name}}</a></td>
+        <td><a href="counter/delete/{{name}}"><h6>delete</h6></a></td>
         <td>
             </tr>
     {{/each}}
@@ -19,5 +19,5 @@
 </table>
 </div>
 <div class="status">
-  <button class="status">BACK</button>
+ <a  href="/"><button class="status back">BACK</button></a>
 </div>
