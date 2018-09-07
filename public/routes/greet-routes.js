@@ -5,7 +5,7 @@ module.exports = function (factory, pool, stored) {
 
     function greetAndCounter (req, res) {
         let user = req.params.user;
-        stored.add(user);
+       
 
         res.render('home', {
 
@@ -13,26 +13,27 @@ module.exports = function (factory, pool, stored) {
             amount: factory.counter()
         });
     }
-    async function submit (req, res) {
+    function submit (req, res) {
         let user = req.body.user;
         let lang = req.body.languageButton;
         factory.greetMe(user, lang);
+       
 
         if (user === '') {
             res.render('home', {
                 amount: factory.counter()
             });
         } else {
+            stored.add(user);
             res.redirect('/greetings/' + user);
         }
     }
 
-    async function counterCurrent (req, res) {
+ async function counterCurrent (req, res) {
         let currentUser = req.params.currentUser;
 
         let name = await pool.query('select name from users where name = 1$', [currentUser]);
         let greets = await pool.query('select greeted from users where name = 1$', [currentUser]);
-        console.log(name);
 
         res.render('counted', {
             name,
@@ -41,25 +42,26 @@ module.exports = function (factory, pool, stored) {
     }
 
     async function counterlist (req, res) {
-        let list = stored.list();
-        console.log(list);
+        let list = await stored.list();
+        console.log(list)
         let greetedNames = list.rows;
+        console.log(greetedNames);
         res.render('counter', {greetedNames});
     }
 
-    async function counter (req, res) {
+     function counter (req, res) {
         res.redirect('/counter');
     }
 
-    async function reset (req, res) {
+     async function reset (req, res) {
         factory.reset();
-        stored.reset();
+        await stored.reset();
         res.redirect('/');
     }
 
-    async function deleter (req, res) {
+   async function deleter (req, res) {
         let users = req.params.currentUser;
-        stored.deleteFromDb(users);
+        await stored.deleteFromDb(users);
 
         res.redirect('/counter');
     }
