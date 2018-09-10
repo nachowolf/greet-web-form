@@ -15,7 +15,10 @@ module.exports = function (pool, factory) {
     }
     async function deleteFromDb (users) {
         await pool.query('delete from users where name = $1', [users]);
+        await pool.query('update users set id = default');
         await pool.query('alter sequence users_id_seq restart 1');
+
+        
     }
 
     async function reset () {
