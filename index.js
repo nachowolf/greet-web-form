@@ -47,7 +47,7 @@ app.get('/reset', routes.reset);
 
 app.get('/counted/:currentUser', routes.counterCurrent);
 
-app.get('/counter/delete/:currentUser', routes.deleter);
+app.post('/counter/delete/:currentUser', routes.deleter);
 
 app.get('/counter', routes.counterlist);
 

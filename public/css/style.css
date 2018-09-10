@@ -217,3 +217,40 @@ table,th, td {
  background-color:#2384b5;
  box-shadow:10px 10px black;
 }
+
+.greet button{
+  transition:0.6s;
+    background-color:green;
+    color:black;
+
+}
+
+.reset button{
+  transition:0.6s;
+  background-color:red;
+  color:black;
+}
+
+.greet, .reset{
+  text-align: center;
+  display: inline-block;
+  margin-left:5px;
+}
+
+
+.greet button:hover, .reset button:hover{
+  transition:0.5s;
+  box-shadow:5px 5px ;
+ 
+}
+
+.mainButtons{
+  text-align: center;
+}
+
+.deleteButton {
+  padding: 0;
+border: none;
+background: none;
+color: red;
+}

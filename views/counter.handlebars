@@ -10,8 +10,7 @@
     {{#each greetedNames}}
         <tr>
         <td><a href="/counted/{{name}}">{{name}}</a></td>
-        <td><a href="counter/delete/{{name}}"><h6>delete</h6></a></td>
-        <td>
+        <td><form action="/counter/delete/{{name}}" method="POST"> <button class="deleteButton">delete</button></form></td>
             </tr>
     {{/each}}
 
