@@ -1,7 +1,16 @@
 const assert = require('assert');
 const greetFactory = require('./public/src/greet-factory.js')
+const pg = require("pg");
+const greetRoutes = require('./public/routes/greet-routes.js');
+const Pool = pg.Pool;
 
-const factory = greetFactory()
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/codex';
+
+
+const app = express();
+const factory = greetFactory();
+const stored = dbFuncs(pool, factory);
+const routes = greetRoutes(factory, pool, stored);
 
 describe("Greetings Web Form", function(){
     it("should ask for name if no name is entered", function(){
@@ -33,9 +42,15 @@ describe("Greetings Web Form", function(){
         factory.greetMe("edward", "Italian")
         assert.equal("Ciao, edward", factory.respond())
     })
-    
-    it("should return 3 for names greeted", function(){
-        
-        assert.equal(3, factory.counter())
-    })
 })
+    
+    describe('The greetings database web app', function(){
+        beforeEach (async function(){
+            await pool.query('delete from users')
+        })
+    })
+
+
+
+
+
