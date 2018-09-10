@@ -19,9 +19,10 @@ const pool = new Pool({
     connectionString,
     ssl: useSSL
 });
-const stored = dbFuncs(pool);
+
 const app = express();
 const factory = greetFactory();
+const stored = dbFuncs(pool, factory);
 const routes = greetRoutes(factory, pool, stored);
 
 app.use(bodyParser.json());
@@ -38,7 +39,7 @@ app.use(express.static('public'));
 
 app.get('/', routes.index);
 
-app.get('/greetings/:user', routes.greetAndCounter);
+// app.get('/greetings/:user', routes.greetAndCounter);
 
 app.post('/greetings/submit', routes.submit);
 
