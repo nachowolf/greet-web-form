@@ -1,7 +1,7 @@
 module.exports = function (factory, pool, stored) {
     async function index (req, res) {
         let counter = await pool.query('select count(*) from users');
-        let counted = counter.rows;
+        let counted = await counter.rows;
         // let counted = stored.counter;
         console.log(counted);
         res.render('home', {
@@ -20,13 +20,13 @@ module.exports = function (factory, pool, stored) {
     //     });
     // }
 
-    function submit (req, res) {
+    async function submit (req, res) {
         let user = req.body.user;
         let lang = req.body.languageButton;
         factory.greetMe(user, lang);
 
-        stored.add(user);
-        stored.counter()
+        await stored.add(user);
+        await stored.counter();
         res.redirect('/');
     }
 

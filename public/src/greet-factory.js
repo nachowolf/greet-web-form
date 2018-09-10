@@ -5,7 +5,7 @@ module.exports = function () {
     var allNamesList = [];
 
     var greetMe = function (name, language) {
-        var one = name.trim().toUpperCase();
+        var one = name.trim().toLowerCase();
 
         for (var i = 0; i < name.length; i++) {
             if (isNaN(name[i]) === false) {
@@ -28,7 +28,7 @@ module.exports = function () {
             // // allNamesList.push(name);
             // if (storedNamesList[one] === undefined) {
             //     storedNamesList[one] = 0;
-                currentName = name;
+                currentName = one;
             // }
 
             if (language === 'English') {
