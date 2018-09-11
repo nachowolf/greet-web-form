@@ -5,7 +5,7 @@ module.exports = function () {
     var allNamesList = [];
 
     var greetMe = function (name, language) {
-        var one = name.trim().toLowerCase();
+        var one = name.trim().charAt(0).toUpperCase() + name.slice(1)
 
         for (var i = 0; i < name.length; i++) {
             if (isNaN(name[i]) === false) {
