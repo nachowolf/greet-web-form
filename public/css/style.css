@@ -32,7 +32,6 @@
     color:black;
   }
 
-
   
   input[type=text]{
     margin-left:20px;
@@ -42,9 +41,10 @@
     padding-left:30px;
     background-color:#7ef6ff;
     text-shadow:2px 2px green;
-    text-transform:uppercase;
+    text-transform:capitalize;
     
   }
+
   
   label{
     display:inline-block;
@@ -57,8 +57,10 @@
   
   .block button{
     transition:0.6s;
-    background-color:yellow;
+    background-color:green;
     color:black;
+    margin-top:-45px;
+    margin-left:-200px;
   }
   
   .block button:hover{
@@ -220,7 +222,7 @@ table,th, td {
 
 .greet button{
   transition:0.6s;
-    background-color:green;
+    background-color:yellow;
     color:black;
 
 }
@@ -246,6 +248,8 @@ table,th, td {
 
 .mainButtons{
   text-align: center;
+  margin-top:-70px;
+  margin-left:200px;
 }
 
 .deleteButton {

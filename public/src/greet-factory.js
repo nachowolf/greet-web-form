@@ -32,11 +32,11 @@ module.exports = function () {
             // }
 
             if (language === 'English') {
-                greet = 'Hello, ' + name;
+                greet = 'Hello, ' + one;
             } else if (language === 'Japanese') {
-                greet = "Kon'nichiwa, " + name;
+                greet = "Kon'nichiwa, " + one;
             } else if (language === 'Italian') {
-                greet = 'Ciao, ' + name;
+                greet = 'Ciao, ' + one;
             }
         }
         else {
