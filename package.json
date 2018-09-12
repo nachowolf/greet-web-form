@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "mocha ./tests/factory-function.test.js ./tests/database.test.js" 
   },
   "repository": {
     "type": "git",

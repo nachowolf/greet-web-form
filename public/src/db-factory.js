@@ -1,10 +1,11 @@
 module.exports = function (pool, factory) {
     async function list () {
-        await pool.query('select * from users order by greeted desc');
+        var listed = await pool.query('select * from users order by greeted desc');
+        return listed
     };
 
-    async function add () {
-        let user = factory.name();
+    async function add (name) {
+        let user = name.trim().charAt(0).toUpperCase() + name.slice(1)
         let listed = await pool.query('select name from users where name = $1', [user]);
 
         if (user !== '' && listed.rowCount === 0) {
@@ -27,12 +28,18 @@ module.exports = function (pool, factory) {
 
     async function counter () {
         let count = await pool.query('select count(*) from users');
-        let counted = count.rows;
-        console.log(counted);
-        return counted
+        // let counted = count.rows[0].count
+        // console.log(counted);
+        return count
+    }
+
+    async function greetedList(currentUser){
+        let list = await pool.query('select * from users where name = ($1)', [currentUser]);
+return list
     }
 
     return {
+        greetedList,
         counter,
         list,
         add,

@@ -1,8 +1,7 @@
 module.exports = function (factory, pool, stored) {
     async function index (req, res) {
-        let counter = await pool.query('select count(*) from users');
-        let counted = await counter.rows;
-        // let counted = stored.counter;
+        let counter = await stored.counter()
+        let counted = await counter.rows[0].count
         console.log(counted);
         res.render('home', {
             greeted: factory.respond(),
@@ -10,15 +9,6 @@ module.exports = function (factory, pool, stored) {
         });
     }
 
-    // function greetAndCounter(req, res) {
-    //     let user = req.params.user;
-
-    //     res.render('home', {
-
-    //         greeted: factory.respond(),
-    //         amount: factory.counter()
-    //     });
-    // }
 
     async function submit (req, res) {
         let user = req.body.user;
@@ -32,8 +22,9 @@ module.exports = function (factory, pool, stored) {
 
     async function counterCurrent (req, res) {
         let currentUser = req.params.currentUser;
+        console.log(currentUser)
 
-        let listedName = await pool.query('select * from users where name = ($1)', [currentUser]);
+        let listedName = await stored.greetedList(currentUser)
 
         let disp = listedName.rows;
         console.log(disp);
@@ -44,7 +35,7 @@ module.exports = function (factory, pool, stored) {
     }
 
     async function counterlist (req, res) {
-        let list = await pool.query('select * from users order by greeted desc');
+        let list = await stored.list()
 
         let greetedNames = list.rows;
         console.log(greetedNames);
