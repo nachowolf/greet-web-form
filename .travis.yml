@@ -14,5 +14,5 @@ before_install:
 
 addons:
   apt:
-    packages:
-      - postgresql-server-dev-9.2
+  packages:
+  - postgresql-server-dev-9.2
