@@ -6,11 +6,11 @@ services:
   - mysql
 
 env:
-  -DATABASE_URL=postgresql://localhost:5432/codex
+  - DATABASE_URL= postgresql://localhost:5432/codex
 
 before_install:
   - psql -c 'create database codex;' -U postgres
-  -psql -U postgres -d codex -a -f tables.sql
+  - psql -U postgres -d codex -a -f tables.sql
 
 addons:
   apt:
