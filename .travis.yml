@@ -5,5 +5,14 @@ node_js:
 services:
   - mysql
 
+env:
+  -DATABASE_URL=postgresql://postgres@localhost:5432/codex_db
+
 before_install:
-  - mysql -u root --password="" < tables.sql
+  - psql -c 'create database codex_db;' -U postgres
+  -psql -U postgres -d codex_db -a -f tables.sql
+
+addons:
+  apt:
+    packages:
+      - postgresql-server-dev-9.2
