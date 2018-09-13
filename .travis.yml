@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - "v8.4.0"
 
-  services:
+services:
   - mysql
 
-  script:
+script:
   -npm start
