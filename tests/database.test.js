@@ -4,7 +4,7 @@ const pg = require("pg");
 const dbFuncs = require('../public/src/db-factory.js');;
 const Pool = pg.Pool;
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/codex';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/codex';
 
 
 const pool = new Pool({
@@ -106,6 +106,23 @@ describe('The greetings database web app', function () {
         assert.equal("Dylan", names) 
     })
 
+    it('should return 8 for times nathri has been', async function () {
+        let stored = dbFuncs(pool);
+        await stored.add('Nathri ')
+        await stored.add('Thomas')
+        await stored.add('bob')
+        await stored.add('Timmy')
+        await stored.add('Dylan')
+
+        let userslist = await stored.list()
+        let allUsers = await userslist.rows
+        let users = await allUsers.map(lister=> lister.name)
+        
+        assert.deepEqual(['Nathri ', 'Thomas', 'Bob', 'Timmy', 'Dylan'], await users)
+      
+    })
+
+    
     after(function () {
         pool.end()
     })

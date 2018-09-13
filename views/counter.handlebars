@@ -1,16 +1,17 @@
 <header class="greetedList"><h1>Greeted List</h1></header>
 <div class="greetlist">
+    <div  class="contTable">
 <table>
     <tr>
-        <th>Name</th>
+        <th class="tableHead"><h5>Name</h5></th>
         <th></th>
-        <th></th>
+
     </tr>
 
     {{#each greetedNames}}
         <tr>
-        <td><a href="/counted/{{name}}">{{name}}</a></td>
-        <td><form action="/counter/delete/{{name}}" method="POST"> <button class="deleteButton">delete</button></form></td>
+        <td><a href="/counted/{{name}}" class="names">{{name}}</a></td>
+        <td><form action="/counter/delete/{{name}}" method="POST"> <button class="deleteButton">Delete</button></form></td>
             </tr>
     {{/each}}
 
@@ -19,4 +20,6 @@
 </div>
 <div class="status">
  <a  href="/"><button class="status back">BACK</button></a>
+ </div>
 </div>
+ </div>

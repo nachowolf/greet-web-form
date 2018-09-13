@@ -58,7 +58,7 @@ module.exports = function () {
         storedNamesList = {};
         greet = undefined;
         listed = false;
-        allNamesList = [];
+        currentName = undefined
     };
 
     var name = function () {

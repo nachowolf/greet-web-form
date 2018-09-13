@@ -4,8 +4,9 @@ module.exports = function (pool, factory) {
         return listed
     };
 
-    async function add (name) {
-        let user = name.trim().charAt(0).toUpperCase() + name.slice(1)
+    async function add () {
+        let user = await factory.name()
+try{
         let listed = await pool.query('select name from users where name = $1', [user]);
 
         if (user !== '' && listed.rowCount === 0) {
@@ -14,9 +15,13 @@ module.exports = function (pool, factory) {
             await pool.query('update users set greeted = greeted + 1 where name = ($1)', [user]);
         }
     }
+    catch(error){
+        console.error(error)
+    }
+    }
     async function deleteFromDb (users) {
         await pool.query('delete from users where name = $1', [users]);
-        await pool.query('update users set id = default');
+        // await pool.query('update users set id = default');
         await pool.query('alter sequence users_id_seq restart 1');
 
         

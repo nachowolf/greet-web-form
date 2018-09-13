@@ -13,9 +13,9 @@ module.exports = function (factory, pool, stored) {
     async function submit (req, res) {
         let user = req.body.user;
         let lang = req.body.languageButton;
-        factory.greetMe(user, lang);
+        await factory.greetMe(user, lang);
 
-        await stored.add(user);
+        await stored.add();
         await stored.counter();
         res.redirect('/');
     }
