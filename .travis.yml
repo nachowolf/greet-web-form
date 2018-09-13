@@ -4,6 +4,3 @@ node_js:
 
 services:
   - mysql
-
-script:
-  -npm start
