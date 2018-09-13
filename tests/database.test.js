@@ -68,16 +68,41 @@ describe('The greetings database web app', function () {
         assert.equal(8, await greets.greeted) 
     })
 
-    it('should return the 5 names in the list', async function () {
+    it('should return the 5 names in the list in descending numeracle order', async function () {
         let stored = dbFuncs(pool);
-        await stored.add('nathri '),
-        await stored.add('Thomas'),
-        await stored.add('bob'),
-        await stored.add('Timmy'),
+        await stored.add('nathri')
+        await stored.add('nathri')
+        await stored.add('nathri')
+        await stored.add('nathri')
+        await stored.add('nathri')
+        await stored.add('nathri')
+
+        await stored.add('Thomas')
+        await stored.add('Thomas')
+        await stored.add('Thomas')
+        await stored.add('Thomas')
+
+        await stored.add('bob')
+        await stored.add('bob')
+        await stored.add('bob')
+
+        await stored.add('Timmy')
+        await stored.add('Timmy')
+
         await stored.add('Dylan')
         let nameslist = await stored.list()
-        let name = nameslist.rows
-        assert.equal(0, name.name) 
+         names = nameslist
+
+        names = nameslist.rows[0].name
+        assert.equal("Nathri", names) 
+        names = nameslist.rows[1].name
+        assert.equal("Thomas", names) 
+        names = nameslist.rows[2].name
+        assert.equal("Bob", names) 
+        names = nameslist.rows[3].name
+        assert.equal("Timmy", names) 
+        names = nameslist.rows[4].name
+        assert.equal("Dylan", names) 
     })
 
     after(function () {

@@ -1,4 +1,4 @@
-module.exports = function (factory, pool, stored) {
+module.exports = function (pool, stored) {
     async function index (req, res) {
         let counter = await stored.counter()
         let counted = await counter.rows[0].count
