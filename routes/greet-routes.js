@@ -56,6 +56,7 @@ module.exports = function (factory, pool, stored) {
 
     async function deleter (req, res) {
         let users = req.params.currentUser;
+        factory.deleter()
         await stored.deleteFromDb(users);
 
         res.redirect('/counter');

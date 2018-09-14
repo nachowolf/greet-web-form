@@ -53,6 +53,10 @@ module.exports = function () {
         }
         return countedList;
     };
+    
+    var deleter = function() {
+    currentName = undefined
+}
 
     var reset = function () {
         storedNamesList = {};
@@ -83,7 +87,8 @@ module.exports = function () {
         greetMe: greetMe,
         // counter: counter,
         respond: respond,
-        namesList: namesList
+        namesList: namesList,
+        deleter
 
     };
 };
