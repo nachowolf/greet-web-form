@@ -35,8 +35,6 @@ module.exports = function (pool, factory) {
 
     async function counter() {
         let count = await pool.query('select count(*) from users');
-        // let counted = count.rows[0].count
-        // console.log(counted);
         return count
     }
 

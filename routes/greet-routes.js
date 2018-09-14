@@ -2,7 +2,7 @@ module.exports = function (factory, pool, stored) {
     async function index (req, res) {
         let counter = await stored.counter()
         let counted = await counter.rows[0].count
-        console.log(counted);
+
         res.render('home', {
             greeted: factory.respond(),
             counted
@@ -22,12 +22,12 @@ module.exports = function (factory, pool, stored) {
 
     async function counterCurrent (req, res) {
         let currentUser = req.params.currentUser;
-        console.log(currentUser)
+
 
         let listedName = await stored.greetedList(currentUser)
 
         let disp = listedName.rows;
-        console.log(disp);
+
         res.render('counted', {
             disp
 
@@ -38,7 +38,7 @@ module.exports = function (factory, pool, stored) {
         let list = await stored.list()
 
         let greetedNames = list.rows;
-        console.log(greetedNames);
+
         res.render('counter', {
             greetedNames
         });
@@ -65,7 +65,6 @@ module.exports = function (factory, pool, stored) {
     return {
         deleter,
         index,
-        // greetAndCounter,
         submit,
         counterCurrent,
         counterlist,

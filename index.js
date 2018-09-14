@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
-const greetFactory = require('./public/src/greet-factory.js');
-const greetRoutes = require('./routes/greet-routes.js');
+const GreetFactory = require('./src/greet-factory.js');
+const GreetRoutes = require('./routes/greet-routes.js');
 const pg = require('pg');
-const dbFuncs = require('./public/src/db-factory.js');
+const DbFuncs = require('./src/db-factory.js');
 const Pool = pg.Pool;
 
 let useSSL = false;
@@ -21,9 +21,9 @@ const pool = new Pool({
 });
 
 const app = express();
-const factory = greetFactory();
-const stored = dbFuncs(pool, factory);
-const routes = greetRoutes(factory, pool, stored);
+const factory = GreetFactory();
+const stored = DbFuncs(pool, factory);
+const routes = GreetRoutes(factory, pool, stored);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -39,7 +39,6 @@ app.use(express.static('public'));
 
 app.get('/', routes.index);
 
-// app.get('/greetings/:user', routes.greetAndCounter);
 
 app.post('/greetings/submit', routes.submit);
 
