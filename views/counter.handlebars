@@ -11,15 +11,15 @@
     {{#each greetedNames}}
         <tr>
         <td><a href="/counted/{{name}}" class="names">{{name}}</a></td>
-        <td><form action="/counter/delete/{{name}}" method="POST"> <button class="deleteButton">Delete</button></form></td>
+        <td><form action="/counter/delete/{{name}}" method="POST"> <div class="deleteButton"><button >Delete</button></div> </form></td>
             </tr>
     {{/each}}
 
 
 </table>
 </div>
-<div class="status">
- <a  href="/"><button class="status back">BACK</button></a>
+<div class="greet">
+ <a  href="/"><button>BACK</button></a>
  </div>
 </div>
  </div>
