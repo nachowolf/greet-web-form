@@ -4,8 +4,8 @@ module.exports = function (pool, factory) {
         return listed
     };
 
-    async function add() {
-        let user = await factory.name()
+    async function add(user) {
+        // let user = await factory.name()
         try {
             let listed = await pool.query('select name from users where name = $1', [user]);
 

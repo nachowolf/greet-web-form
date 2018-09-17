@@ -15,7 +15,7 @@ module.exports = function (factory, pool, stored) {
         let lang = req.body.languageButton;
         await factory.greetMe(user, lang);
 
-        await stored.add();
+        await stored.add(factory.name());
         await stored.counter();
         res.redirect('/');
     }

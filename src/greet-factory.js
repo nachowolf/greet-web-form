@@ -35,9 +35,7 @@ module.exports = function () {
                 greet = 'Ciao, ' + one;
             }
         }
-        else {
-            listed = false;
-        }
+       
     };
 
     
@@ -46,7 +44,7 @@ module.exports = function () {
 }
 
     var reset = function () {
-        storedNamesList = {};
+
         greet = undefined;
         listed = false;
         currentName = undefined
