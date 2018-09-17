@@ -52,6 +52,8 @@ app.get('/counter', routes.counterlist);
 
 app.post('/counter', routes.counter);
 
+app.get('/back', routes.back)
+
 let PORT = process.env.PORT || 3008;
 
 app.listen(PORT, function () {

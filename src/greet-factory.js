@@ -41,6 +41,7 @@ module.exports = function () {
     
     var deleter = function() {
     currentName = undefined
+    greet = undefined
 }
 
     var reset = function () {

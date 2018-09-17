@@ -45,6 +45,7 @@ module.exports = function (factory, pool, stored) {
     }
 
     function counter (req, res) {
+        factory.deleter()
         res.redirect('/counter');
     }
 
@@ -62,7 +63,13 @@ module.exports = function (factory, pool, stored) {
         res.redirect('/counter');
     }
 
+    async function back (reg, res){
+        factory.deleter()
+        res.redirect('/')
+    }
+
     return {
+        back,
         deleter,
         index,
         submit,
