@@ -4,7 +4,7 @@ const pg = require("pg");
 const DbFuncs = require('../src/db-factory.js');;
 const Pool = pg.Pool;
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/codex';
+const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/codex';
 
 
 const pool = new Pool({
